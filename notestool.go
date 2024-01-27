@@ -42,7 +42,7 @@ func saveNotes(collectionName string, notes []string) {
 
 func displayNotes(notes []string) {
 	if len(notes) == 0 {
-		fmt.Println("No notes available.")
+		fmt.Println("Collection is empty, no notes available.")
 	} else {
 		for i, note := range notes {
 			fmt.Printf("%03d - %s\n", i+1, note)
@@ -89,18 +89,22 @@ func main() {
 		case "1":
 			fmt.Println("\nNotes:")
 			displayNotes(notes)
-			fmt.Println()
+			fmt.Println("----------------------------")
 		case "2":
 			fmt.Print("\nEnter the note text:\n")
 			scanner.Scan()
 			newNote := scanner.Text()
 			notes = addNote(notes, newNote)
-			fmt.Println("Note added successfully.")
+			fmt.Println("\nNote added successfully.")
+			fmt.Println("----------------------------")
 		case "3":
 			fmt.Print("\nEnter the number of note to remove or 0 to cancel:\n")
 			scanner.Scan()
 			noteNumber, _ := strconv.Atoi(scanner.Text())
 			notes = removeNote(notes, noteNumber)
+			fmt.Println("\nNote removed successfully.")
+			fmt.Println("----------------------------")
+
 		case "4":
 			saveNotes(collectionName, notes)
 			fmt.Println("Exiting the program. Goodbye!")
